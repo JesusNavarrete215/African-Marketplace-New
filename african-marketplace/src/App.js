@@ -3,8 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Login from "./components/login"; //login form
-import Itemlist from "./components/itemList"; //all the items for sale will be located in
+import Login from "./components/Login"; //login form
+import Itemlist from "./components/Itemlist"; //all the items for sale will be located in
 
 function App() {
   return (
