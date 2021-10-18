@@ -1,3 +1,5 @@
+/* Top Sections (Selina) */
+
 #description {
 
 }
@@ -6,10 +8,46 @@
 
 }
 
-#squares{
+/* Bottom Sections (Peter) */
 
+#squares{
+    display: flex;
+    justify-content: space-evenly;
+    color: salmon;
+    background-color: white;
+    margin: 8%
 }
+
+/* Background Images */
+
+#explore{
+    width: 250px;
+    height: 250px;
+    background-image: url(https://via.placeholder.com/250);
+}
+
+#seller{
+    width: 250px;
+    height: 250px;
+    background-image: url(https://via.placeholder.com/250);
+}
+
+#business{
+    width: 250px;
+    height: 250px;
+    background-image: url(https://via.placeholder.com/250);
+}
+
+/* Footer */
 
 #footer{
-    
+    font-size: 2rem;
+    text-align: center;
+    margin: 5%;
+    padding: 5%;
+    background-color: salmon;
+    color: white;
 }
+
+
+
