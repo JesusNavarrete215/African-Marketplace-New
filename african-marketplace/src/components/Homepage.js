@@ -5,8 +5,9 @@ import '../Homepage.css'
 function Homepage () {
     return(
         <div>
-            <section id='description'></section>
+            <section id='description'>
                 {/* Selina's code here*/}
+            </section>
             <section id='about-us'>
                 {/* Selina's code here*/}
             </section>
