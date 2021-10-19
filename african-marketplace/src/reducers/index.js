@@ -4,6 +4,7 @@ import {
   FETCH_FAIL,
   ADD_ITEM,
   ERROR_MESSAGE,
+  SET_ITEMS,
 } from "./../actions/index";
 
 export const initialState = {
@@ -14,8 +15,25 @@ export const initialState = {
   errorMessage: "",
 };
 
-const reducer = (state = initialState, action) => {
+// name: "shoes",
+// location: "",
+// category: "",
+// description: "",
+// price: 20,
+// user_id: 1,
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case VERIFY_USER:
+      return {
+        ...state,
+        credentials: [...state, action.payload],
+      };
+    case SET_ITEMS:
+      return {
+        ...state,
+        item: [payload],
+      };
     case FETCH_START:
       return {
         ...state,
@@ -42,6 +60,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         item: [...state.item, newItem],
+      };
+    case ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: state.errorMessage,
       };
     default:
       return state;

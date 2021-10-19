@@ -1,14 +1,14 @@
-// import axios from "axios";
+import axios from "axios";
 
-// const axiosWithAuth = () => {
-//   const token = localStorage.getItem("token");
+const axiosWithAuth = () => {
+  const token = localStorage.getItem("token");
 
-//   return axios.create({
-//     baseURL: "http://localhost:5000/api",
-//     headers: {
-//       authorization: token,
-//     },
-//   });
-// };
+  return axios.create({
+    baseURL: "https://african-marketplace-db.herokuapp.com/api",
+    headers: {
+      authorization: token,
+    },
+  });
+};
 
-// export default axiosWithAuth;
+export default axiosWithAuth;
