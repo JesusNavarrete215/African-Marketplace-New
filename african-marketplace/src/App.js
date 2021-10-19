@@ -13,14 +13,19 @@ import { Provider } from "redux";
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 function App() {
-  return (
-    <div className="App">
-      <Login />
-      <SignUp />
-      <Itemlist />
-      <Homepage />
-    </div>
-  );
+
+  const loggedIn = localStorage.getItem("token");
+
+  return(
+    <StyledApp>
+      <NavBar logged = {loggedIn} />
+      <Switch>
+        <Route />
+        <PrivateRoute />
+        <Route />
+      </Switch>
+    </StyledApp>
+  )
 }
 
 const rootElement = document.getElementById("root");
