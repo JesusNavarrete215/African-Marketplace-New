@@ -5,6 +5,7 @@ export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const FETCH_FAIL = "FETCH_FAIL";
 export const ADD_ITEM = "ADD_ITEM";
 export const ERROR_MESSAGE = "ERROR_MESSAGE";
+export const VERIFY_USER = "VERIFY_USER";
 
 export const fetchData = () => {
   return (dispatch) => {
@@ -16,8 +17,13 @@ export const fetchData = () => {
       })
       .catch((error) => {
         dispatch(fetchError(error));
+        dispatch(setError("Something went wrong, please try again"));
       });
   };
+};
+
+export const verifyUser = (user) => {
+  return { type: VERIFY_USER, payload: user };
 };
 
 export const fetchStart = () => {
@@ -33,7 +39,7 @@ export const fetchFail = (error) => {
 export const addItem = (item) => {
   return { type: ADD_ITEM, payload: item };
 };
-export const errorMessage = (err) => {
+export const errorMessage = () => {
   return { type: ERROR_MESSAGE };
 };
 export const setError = (err) => {
