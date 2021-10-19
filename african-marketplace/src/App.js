@@ -9,23 +9,35 @@ import thunk from "redux-thunk";
 import { createStore, applyMiddleware } from "redux";
 import { reducer } from "./reducers/index";
 import { Provider } from "redux";
+import PrivateRoute from "./components/privateRoute";
+import AddItem from "./components/AddItem";
+import SignUp from "./components/SignUp";
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 
 function App() {
-
   const loggedIn = localStorage.getItem("token");
 
-  return(
+  return (
     <StyledApp>
-      <NavBar logged = {loggedIn} />
+      <NavBar logged={loggedIn} />
       <Switch>
-        <Route />
-        <PrivateRoute />
-        <Route />
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/add-item">
+          <AddItem />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <PrivateRoute exact path="/item-list" component={Itemlist} />
       </Switch>
     </StyledApp>
-  )
+  );
 }
 
 const rootElement = document.getElementById("root");

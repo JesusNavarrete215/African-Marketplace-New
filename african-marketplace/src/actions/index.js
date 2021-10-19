@@ -6,6 +6,7 @@ export const FETCH_FAIL = "FETCH_FAIL";
 export const ADD_ITEM = "ADD_ITEM";
 export const ERROR_MESSAGE = "ERROR_MESSAGE";
 export const VERIFY_USER = "VERIFY_USER";
+export const SET_ITEMS = "SET_ITEMS";
 
 export const fetchData = () => {
   return (dispatch) => {
@@ -24,6 +25,10 @@ export const fetchData = () => {
 
 export const verifyUser = (user) => {
   return { type: VERIFY_USER, payload: user };
+};
+
+export const setItems = (value) => {
+  return { type: SET_ITEMS, payload: value };
 };
 
 export const fetchStart = () => {

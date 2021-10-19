@@ -1,7 +1,7 @@
 import React from "react";
 
 const Item = (props) => {
-  const { item } = props;
+  const { item, handleDelete } = props;
 
   return (
     <div>
@@ -20,6 +20,7 @@ const Item = (props) => {
         <p>
           <b>Location:</b> {item.location}
         </p>
+        <button onSubmit={handleDelete(item.id)}></button>
       </div>
     </div>
   );
