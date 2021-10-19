@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router";
+import { verifyUser } from "../actions";
 
-const Login = () => {
-  const [error, setError] = useState(false);
-  const [value, setValue] = useState({
-    username: "",
-    password: "",
-  });
-
+const Login = (props) => {
+  const [error, setError] = useState("");
+  const [value, setValue] = useState([]);
+  const { credentials, isLoading, error } = props;
   const { push } = useHistory();
 
   const handleChange = (e) => {
@@ -21,9 +20,10 @@ const Login = () => {
   const login = (e) => {
     e.preventDefault();
     axios
-      .post("server", value)
+      .post("api/users/login ", value)
       .then((res) => {
-        localStorage.setItem("token", res.data.token); //depends on the res from the server
+        localStorage.setItem("token", res.data.token);
+        verifyUser(value);
         push(); // once we successfully get the correct token then we want to push to itemList and have the addItem form available.
       })
       .catch((err) => {
@@ -59,4 +59,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProp = (state) => {
+  return {
+    credentials: this.state.credentials,
+    isLoading: this.state.isLoading,
+  };
+};
+
+export default connect(mapStateToProps, { verifyUser })(Login);
