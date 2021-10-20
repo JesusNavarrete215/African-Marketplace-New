@@ -5,6 +5,7 @@ import {
   ADD_ITEM,
   ERROR_MESSAGE,
   SET_ITEMS,
+  VERIFY_USER,
 } from "./../actions/index";
 
 export const initialState = {
@@ -32,7 +33,7 @@ export const reducer = (state = initialState, action) => {
     case SET_ITEMS:
       return {
         ...state,
-        item: [payload],
+        item: [action.payload],
       };
     case FETCH_START:
       return {
@@ -55,7 +56,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_ITEM:
       const newItem = {
         ...action.payload,
-        id: item.length() + 1,
+        id: state.item.length() + 1,
       };
       return {
         ...state,

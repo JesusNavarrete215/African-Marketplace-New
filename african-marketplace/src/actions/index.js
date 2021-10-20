@@ -17,7 +17,7 @@ export const fetchData = () => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((error) => {
-        dispatch(fetchError(error));
+        dispatch(fetchFail(error));
         dispatch(setError("Something went wrong, please try again"));
       });
   };
