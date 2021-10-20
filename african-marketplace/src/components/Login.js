@@ -7,7 +7,7 @@ import { verifyUser } from "../actions";
 const Login = (props) => {
   const [error, setError] = useState("");
   const [value, setValue] = useState([]);
-  const { credentials, isLoading, error } = props;
+  const { credentials, isLoading, verifyUser } = props;
   const { push } = useHistory();
 
   const handleChange = (e) => {
@@ -20,11 +20,11 @@ const Login = (props) => {
   const login = (e) => {
     e.preventDefault();
     axios
-      .post("api/users/login ", value)
+      .post("api/users/login ", credentials)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         verifyUser(value);
-        push(); // once we successfully get the correct token then we want to push to itemList and have the addItem form available.
+        // push(); // once we successfully get the correct token then we want to push to itemList and have the addItem form available.
       })
       .catch((err) => {
         setError("Username and Password do not match! Please try again");
@@ -59,7 +59,7 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProp = (state) => {
+const mapStateToProps = (state) => {
   return {
     credentials: this.state.credentials,
     isLoading: this.state.isLoading,

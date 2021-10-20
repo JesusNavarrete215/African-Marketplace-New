@@ -85,6 +85,7 @@ const Additem = (props) => {
           value={value.price}
           onChange={handleChange}
         />
+        <p>{error}</p>
         <button>Submit</button>
         <button className="cancel-btn" onClick={handelCancel}>
           Cancel
