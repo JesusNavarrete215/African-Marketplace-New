@@ -1,74 +1,74 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { render } from "react-dom";
-import axios from "axios";
-import axiosWithAuth from "./../utils/axiosWithAuth";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
+import { useHistory } from "react-router";
+import { verifyUser } from "../actions";
 
-class SignUp extends React.Component {
-  state = {
-    credentials: {
-      username: "",
-      password: "",
-    },
-  };
+const initialState = {
+  credentials: { username: "", password: "" },
+};
 
-  handleChange = (event) => {
-    this.setState({
+const SignUp = (props) => {
+  const [credentials, setCredentials] = useState(initialState);
+  const { push } = useHistory();
+  const { verifyUser } = props;
+
+  const handleChange = (e) => {
+    setCredentials({
       credentials: {
-        ...this.state.credentials,
-        [event.target.name]: event.target.value,
+        ...credentials,
+        [e.target.name]: e.target.value,
       },
     });
   };
 
-  signUp = (event) => {
-    event.preventDefault();
-    this.state.props
-      .axiosWithAuth()
-      .post("", this.state.credentials)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://african-marketplace-db.herokuapp.com/api/users/register",
+        credentials
+      )
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        // this.props.history.push('/view');
+        // verifyUser(credentials.credentials);
+        console.log(res);
+        // localStorage.setItem("token", res.data.token);
+        // push("/login");
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  render() {
-    return (
-      // <ComponentContainer>
-      //     <ModalContainer>
+  return (
+    // <ComponentContainer>
+    //     <ModalContainer>
+    <div>
+      <h1>Welcome</h1>
+      <h2>Sign Up Here</h2>
       <div>
-        <h1>Welcome</h1>
-        <h2>Sign Up Here</h2>
-        <div>
-          <form onSubmit={this.signUp}>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              value={this.state.credentials.username}
-              onChange={this.handleChange}
-            />
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={this.state.credentials.password}
-              onChange={this.handleChange}
-            />
-            <button onClick={this.signUp} id="submit">
-              Sign Up
-            </button>
-          </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value={credentials.username}
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+          <button id="submit">Sign Up</button>
+        </form>
       </div>
-      // </ModalContainer>
-      // </ComponentContainer>
-    );
-  }
-}
+    </div>
+    // </ModalContainer>
+    // </ComponentContainer>
+  );
+};
 
-export default connect(null, axiosWithAuth)(SignUp);
+export default connect(null, { verifyUser })(SignUp);

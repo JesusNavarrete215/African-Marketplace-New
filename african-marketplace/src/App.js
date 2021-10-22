@@ -25,9 +25,12 @@ function App() {
       <Route path="/signup">
         <SignUp />
       </Route>
+      <Route path="/item-list">
+        <Itemlist />
+      </Route>
       {/* <PrivateRoute exact path="/item-list" component={Itemlist} /> */}
     </div>
   );
 }
 
-export default connect(null)(App);
+export default connect(null, { PrivateRoute })(App);

@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axiosWithAuth from "./../utils/axiosWithAuth";
 import Item from "./Item";
 import { setItems } from "./../actions/index";
+import { fetchData } from "../actions";
 
 const Itemlist = (props) => {
   const { items, setItems, axiosWithAuth } = props;
   const [values, setValues] = useState(items);
 
+  console.log(props);
+  useEffect(() => {
+    fetchData();
+  }, []);
   const deleteItem = (id) => {
     setValues(values.filter((value) => value.id !== id));
     setItems(values);
@@ -35,7 +40,9 @@ const Itemlist = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { items: this.state };
+  return { items: state.item };
 };
 
-export default connect(mapStateToProps, { setItems, axiosWithAuth })(Itemlist);
+export default connect(mapStateToProps, { fetchData, setItems, axiosWithAuth })(
+  Itemlist
+);
