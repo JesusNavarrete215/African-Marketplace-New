@@ -1,16 +1,16 @@
-import axios from "axios";
-
+import { connect } from "react-redux";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
-const articleService = () => {
+const articleService = (props) => {
+  const { axiosWithAuth } = props;
   return axiosWithAuth()
-    .get(`/articles`)
+    .get(`/items`)
     .then((res) => {
       const { data } = res;
       return data;
     });
 };
 
-export default articleService;
+export default connect(null, { axiosWithAuth })(articleService);
 
 // this requests using axiosWithAuth to verify the user and place a request for all the data to the server to retrieve from the database.

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { connect } from "react-redux";
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
@@ -11,4 +12,4 @@ const axiosWithAuth = () => {
   });
 };
 
-export default axiosWithAuth;
+export default connect(null)(axiosWithAuth);

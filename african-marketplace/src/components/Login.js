@@ -7,7 +7,7 @@ import { verifyUser } from "../actions";
 const Login = (props) => {
   const [error, setError] = useState("");
   const [value, setValue] = useState([]);
-  const { credentials, isLoading, verifyUser } = props;
+  const { credentials, verifyUser } = props;
   const { push } = useHistory();
 
   const handleChange = (e) => {
@@ -24,7 +24,7 @@ const Login = (props) => {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         verifyUser(value);
-        // push(); // once we successfully get the correct token then we want to push to itemList and have the addItem form available.
+        push("/item-list"); // once we successfully get the correct token then we want to push to itemList and have the addItem form available.
       })
       .catch((err) => {
         setError("Username and Password do not match! Please try again");
@@ -61,8 +61,8 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    credentials: this.state.credentials,
-    isLoading: this.state.isLoading,
+    credentials: state.credentials,
+    isLoading: state.isLoading,
   };
 };
 

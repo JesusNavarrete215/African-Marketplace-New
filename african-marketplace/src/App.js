@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 
 function App() {
   return (
+
     <div className="App">
       <div className='market-header'>
         <img src={AfricaLogo} alt='green Africa logo' />
@@ -23,7 +24,6 @@ function App() {
             <Link to="/login">login</Link>
             <Link to="/add-item">Create Listings</Link>
             <Link to="/signup">Sign Up</Link>
-
           </div>
         </nav>
       </div>
@@ -46,6 +46,6 @@ function App() {
   );
 }
 
-export default connect(null)(App);
 
+export default connect(null, { PrivateRoute })(App);
 

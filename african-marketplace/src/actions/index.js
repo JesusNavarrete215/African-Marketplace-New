@@ -12,7 +12,7 @@ export const fetchData = () => {
   return (dispatch) => {
     dispatch({ FETCH_START });
     axios
-      .get(`http://localhost:6000/api/users`)
+      .get(`https://african-marketplace-db.herokuapp.com/api/items`)
       .then((res) => {
         dispatch(fetchSuccess(res.data));
       })
