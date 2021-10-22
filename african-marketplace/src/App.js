@@ -21,7 +21,7 @@ function App() {
           <div className='nav-links'>
             <Link to="/">Home</Link>
             <Link to="/login">login</Link>
-            <Link to="/add_item">Create Listings</Link>
+            <Link to="/add-item">Create Listings</Link>
             <Link to="/signup">Sign Up</Link>
 
           </div>
